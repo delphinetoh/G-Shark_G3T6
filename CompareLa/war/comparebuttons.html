@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="jquery.mobile-1.4.1/jquery.mobile-1.4.1.min.css">
+<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
+<script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
+
+<style>
+
+
+.readmore {
+background: #2f2f2f;
+text-align: center;
+display: block;
+width: 250px;
+border-radius:8px;
+-moz-border-radius:8px;
+-webkit-border-radius:8px;
+box-shadow: 0px 3px 5px #000;
+-moz-box-shadow: 0px 3px 5px #000;
+-webkit-box-shadow: 0px 3px 5px #000;
+}
+
+.readmore:hover {
+position:relative;
+top:3px;
+color: #fqq;
+box-shadow:none;
+-moz-box-shadow:none;
+-webkit-box-shadow:none;
+}
+
+.shadow
+{
+	box-shadow: 0px 3px 10px #000;
+	-moz-box-shadow: 10px 13px 15px #000;
+}
+
+table,th,td
+{
+
+
+padding:6px;
+text-align:center;
+border-spacing:5px;
+table-layout:fixed;
+
+
+}
+
+.styled-select select {
+   background: transparent;
+   width: 268px;
+   padding: 5px;
+   font-size: 16px;
+   line-height: 1;
+   border: 0;
+   border-radius: 0;
+   height: 34px;
+   -webkit-appearance: none;
+   }
+
+
+  h6 {display:none;}
+  h3 {display:none;}
+  h4 {display:none;}
+  h5 {display:none;}
+  
+.ui-grid-b img {
+    width: 90%;
+    height: 10%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+.ui-grid-b div {
+    width: 75%;
+    height: auto;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ui-grid-b>.ui-block-a, .ui-grid-b>.ui-block-b, .ui-grid-b>.ui-block-c {
+	width: 33.333%;
+	height: 105px;
+}
+
+p {
+    font-size: 12px;
+    font-family: Century Gothic;
+}
+
+.basith 
+{
+	
+	top:39px;
+	left:200px;
+	
+}        
+</style>
+
+<script>
+
+$("document").ready(function() {
+	if ($("h6:first").is(":hidden")) {
+		$("h6").slideDown("slow");
+		} else {
+		$("h6").hide();
+		}
+});
+
+
+function myYellow()
+{
+	
+	document.getElementById('img1').src="../products/female_top1.png";
+	document.getElementById('first_1').src="../products/female_top1_selected.png";
+	$("h4").show();
+	$("cross1").hide();
+
+}
+
+function myBlue()
+{
+	document.getElementById('img2').src="../products/female_top2.png";
+	document.getElementById('second_1').src="../products/female_top2_selected.png";
+	$("h5").show();
+	$("cross2").hide();
+}
+
+function removeFirst()
+{
+	document.getElementById('img1').src="../images/question_mark.png";
+	document.getElementById('first_1').src="../products/female_top1.png";
+	$("h4").hide();
+	$("cross1").show();
+}
+
+function removeSecond()
+{
+	document.getElementById('img2').src="../images/question_mark.png";
+	document.getElementById('second_1').src="../products/female_top2.png";
+	$("h5").hide();
+	$("cross2").show();
+}
+
+
+
+function close1(){
+	
+	$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h1><strong>Deleted</strong></h1></div>")
+    .css({ "backgroundColor":"white","display":"block","top": $(window).scrollTop() + 300 , "left": $(window).scrollTop() + 100})
+    .appendTo( $("body") )
+    .delay( 500 )
+    .fadeOut( 200, function(){
+        $(this).remove();
+    });
+
+}
+
+function all()
+
+{
+	
+	var item1=0;
+	var item2=0;
+	
+
+   
+	
+	
+	
+	if(document.getElementById("button1").style.backgroundColor!= "transparent")
+	{
+		
+		
+		
+		if(2>3)
+		{
+			
+			item1++;
+		}
+		
+		else
+		{
+			
+			
+			item2++;
+		}
+	}
+	
+	if(document.getElementById("button2").style.backgroundColor!= "transparent")
+	{
+		
+		if(2>1)
+		{
+			
+			item1++;
+		}
+		else
+		{
+			
+			
+			item2++;
+		}
+	}
+	
+	if(document.getElementById("button3").style.backgroundColor!= "transparent")
+	{
+		
+		if(2>3)
+		{
+			
+			item1++;
+		}
+		else
+		{
+			
+			
+			item2++;
+		}
+	}
+	
+	
+	if(document.getElementById("button4").style.backgroundColor!= "transparent")
+	{
+		
+		if(2>1)
+		{
+			
+			item1++;
+		}
+		else
+		{
+			
+			
+			item2++;
+		}
+	}
+	
+	
+	if(document.getElementById("button5").style.backgroundColor!= "transparent")
+	{
+		
+		if(2>1)
+		{
+			
+			item1++;
+		}
+		else
+		{
+			
+			
+			item2++;
+		}
+	}
+	
+	
+	
+	
+	
+	if(item1==0 && item2==0)
+	{
+		
+		return 0;
+	}
+	
+	if(item1==item2)
+	{
+		
+		return 3;
+	}
+	if(item1> item2)
+	{
+		
+		return 1;
+	}
+	
+	if(item2>item1)
+	{
+		
+		return 2;
+	}
+	
+	
+}
+
+function logic1(btn)
+{
+	
+	
+	
+  
+	   
+    var property=document.getElementById(btn);
+    if (property.style.backgroundColor == 'transparent') {
+        property.style.backgroundColor = "Chartreuse";
+    } else {
+        property.style.backgroundColor = 'transparent';
+    }
+		
+    
+    var x=all();
+	   
+	if(x==0)
+	{
+		document.getElementById("img1").style.borderColor="black";
+		document.getElementById("img1").style.borderWidth="thin";
+		document.getElementById("img2").style.borderColor="black";
+		document.getElementById("img2").style.borderWidth="thin";
+		
+		 
+	}
+	if(x==1)
+	{
+		 
+		 document.getElementById("img2").style.borderColor="black";
+			document.getElementById("img2").style.borderWidth="thin";
+			document.getElementById("img1").style.border="thick solid Chartreuse";
+		
+	}
+	if(x==2)
+	{
+		document.getElementById("img1").style.borderColor="black";
+		document.getElementById("img1").style.borderWidth="thin"
+		 document.getElementById("img2").style.border="thick solid Chartreuse"; 
+	}
+	
+	if(x==3)
+	{
+		
+		document.getElementById("img1").style.border="thick solid Chartreuse"; 
+		document.getElementById("img2").style.border="thick solid Chartreuse"; 
+		
+		
+	}
+	
+	
+}
+
+
+function logic2()
+{
+
+	document.getElementById('button2').style.backgroundColor='transparent';
+	document.getElementById("img1").style.border="thick solid Chartreuse";
+	document.getElementById("img2").style.borderColor="black";
+	document.getElementById("img2").style.borderWidth="thin";
+	
+}
+
+function compare()
+{
+	
+	$("h2").hide();
+	
+	$("h3").show();
+	document.getElementById("img1").style.borderColor="Chartreuse";
+	document.getElementById("img1").style.borderWidth="thick";	
+	
+	document.getElementById('delete1').style.visibility = 'hidden';
+	document.getElementById('info1').style.visibility = 'hidden';
+	document.getElementById('delete2').style.visibility = 'hidden';
+	document.getElementById('info2').style.visibility = 'hidden';
+	
+}
+function showItems()
+{
+	$("h3").hide();
+	$("h2").show();
+	document.getElementById("img1").style.borderColor="black";
+	document.getElementById("img1").style.borderWidth="thin"
+	
+	document.getElementById('delete1').style.visibility = 'visible';
+	document.getElementById('info1').style.visibility = 'visible';
+	document.getElementById('delete2').style.visibility = 'visible';
+	document.getElementById('info2').style.visibility = 'visible';
+}
+
+function HighlightBorder()
+{
+	document.getElementById("main1").style.border="thick solid yellow";
+}
+
+
+
+</script>
+
+</head>
+<body>
+
+<!--header-->  
+<div data-role="header" data-position="inline" data-position="fixed">
+	<a href="#" data-icon="check" data-iconpos="notext"></a>
+    <h1>Compare Items</h1>
+</div>
+
+
+
+<h6>
+	<!--Display Question Marks-->
+	<fieldset id="any" class="ui-grid-c">
+
+			
+       
+          	<div class="ui-block-a">
+				 <img id="img1" img alt="" src="../images/question_mark.png" border="1" style="height: 150px; width: 110px; margin-top: 0em;margin-left: 1.2em;" />
+				 
+          	</div>
+
+ 			<div class="ui-block-b">
+			 	<h4>
+					 <button id="delete1" type="button" onclick="removeFirst()"  class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"  style="background-color: rgba(0, 0, 0, 0);border: none; box-shadow: none; top:-15px;left:17px"></button>
+ 					
+					 <button id="info1" type="button" onclick="removeFirst()"  class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext" style="background-color: rgba(0, 0, 0, 0);border: none; box-shadow: none;top:-51px;left:-68px"></button>
+ 				 	<DIV style="font-size:12px;position: absolute;left:25px;top: 230px;">Mango Cardigan</DIV>
+ 				
+ 				</h4>            
+ 			</div>
+              
+          	<div class="ui-block-c">
+          		<img id="img2" img alt="" src="../images/question_mark.png" border="1" style="height: 150px; width: 110px; margin-top: 0em;margin-left: 3.4em;" />
+				  		
+			</div>
+				 
+			<div class="ui-block-d">
+				<h5>
+			 		 <button id="delete2" type="button" onclick="removeSecond()"  class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext" style="background-color: rgba(0, 0, 0, 0);border: none; box-shadow: none; top:-15px;left:41px"></button>
+                 	<button id="info2" type="button" onclick="removeFirst()" class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext" style="background-color: rgba(0, 0, 0, 0);border: none; box-shadow: none;top:-51px;left:-44px"></button>
+ 				 	<DIV style="font-size:12px;position: absolute;left:220px;top: 230px;">ASOS Tshirt</DIV>
+                 </h5>
+ 			</div>
+	</fieldset>
+
+
+		
+<h2>		<!--Compare Button-->
+			<button id ="first" type="button" data-mini="true" onclick="compare()" style="top:0px;width:90%;margin-left:auto;margin-right:auto;">Compare</button> 
+		     
+	<!--Images of Items-->
+	<div class="ui-grid-b">
+		<div class="ui-block-a">
+			<img id="first_1" onclick="myYellow()" alt="" src="../products/female_top1.png" border="1" style="width: 90px; height: 95px;margin-left: 8px;"/> 
+			<cross1>
+				
+				<button type="button" onclick="close1()" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"  style="background-color: rgba(0, 0, 0, 0);border: none; box-shadow: none;top:-104px;left:73px"></button>		
+			</cross1>
+		</div>
+		
+		<div class="ui-block-b">
+			<img id="second_1" onclick="myBlue()" alt="" src="../products/female_top2.png" border="1" style="width: 90px; height: 95px;margin-left: 8px;"/>
+		    <cross2>
+		    	<button type="button" onclick="close1()" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"  style="background-color: rgba(0, 0, 0, 0);border: none; box-shadow: none;top:-104px;left:73px"></button>  
+			</cross2>
+		</div>
+		
+		<div class="ui-block-c">
+			<img alt="" src="../products/female_bottom1.png" border="1" style="width: 90px; height: 95px;margin-left:8px" />
+		 	<button type="button" onclick="close1()" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"  style="background-color: rgba(0, 0, 0, 0);border: none; box-shadow: none;top:-104px;left:67px"></button>
+		</div>
+	</div>
+	<div class="ui-grid-b">
+		<div class="ui-block-a">
+			<img alt="" src="../products/female_bag2.png" border="1" style="width: 90px; height: 95px;margin-left: 8px;"/> 
+			<button type="button" onclick="close1()" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"  style="background-color: rgba(0, 0, 0, 0);border: none; box-shadow: none;top:-104px;left:68px"></button>
+		</div>
+		
+		<div class="ui-block-b">
+			<img alt="" src="../products/male_bottoms2.png" border="1" style="width: 90px; height: 95px;margin-left: 8px;"/>
+		    <button type="button" onclick="close1()" class="ui-btn ui-shadow ui-corner-all ui-icon-delete ui-btn-icon-notext"  style="background-color: rgba(0, 0, 0, 0);border: none; box-shadow: none;top:-104px;left:68px"></button>
+		</div>
+		
+		<div class="ui-block-c">
+			<img alt="" src="../images/add-item.png" border="1" style="width: 90px; height: 95px;margin-left:8px" />
+		</div>
+	</div>	
+
+
+
+</h2>
+</h6>	
+
+<h3>
+		<!--Show List Button-->
+		<button id ="first" type="button" data-mini="true" onclick="showItems()" style="top:-5px;width:90%;margin-left:auto;margin-right:auto;">Show List</button> 
+	  
+		     
+		<!-- Criteria buttons -->
+  	 	<button type="button" id="button1" name="button1" class="shadow" onclick="logic1('button1')" style="font-size:10px; background-color:Chartreuse; width: 60px; height: 30px;position:absolute;top:310px;left:130px">Price</button> 
+    	<button type="button" id="button2" name="button2" class="shadow" onclick="logic1('button2')" style="font-size:10px; background-color:Chartreuse; width: 60px; height: 30px;position:absolute;top:350px;left:130px">Location</button>
+   		<button type="button" id="button3" name="button3" class="shadow" onclick="logic1('button3')" style="font-size:10px; background-color:Chartreuse; width: 60px; height: 30px;position:absolute;top:390px;left:130px">Stock</button>
+     	<button type="button" id="button4" name="button4" class="shadow" onclick="logic1('button4')" id="button2" onclick="logic2()"style="font-size:10px; background-color:Chartreuse; width: 60px; height: 30px;position:absolute;top:430px;left:130px">Likes</button>
+       	<button type="button" id="button5" name="button5" class="shadow" onclick="logic1('button5')" style="font-size:10px; background-color:Chartreuse; width: 60px; height: 30px;position:absolute;top:470px;left:130px">Ratings</button>
+    	
+    	
+    	
+    	
+    	
+    <!-- Test
+    <div class="ui-grid-b-1">
+	    <div class="ui-block-a-1"><div class="ui-bar ui-bar-a" style="height:60px">SGD25</div></div>
+	    <div class="ui-block-b-1"><div class="ui-bar ui-bar-a" style="height:60px">Price</div></div>
+	    <div class="ui-block-c-1"><div class="ui-bar ui-bar-a" style="height:60px">SGD30</div></div>
+	    
+	    <div class="ui-block-a-1"><div class="ui-bar ui-bar-a" style="height:60px">Block A</div></div>
+	    <div class="ui-block-b-1"><div class="ui-bar ui-bar-a" style="height:60px">Location</div></div>
+	    <div class="ui-block-c-1"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>
+	    
+	    <div class="ui-block-a-1"><div class="ui-bar ui-bar-a" style="height:60px">20</div></div>
+	    <div class="ui-block-b-1"><div class="ui-bar ui-bar-a" style="height:60px">Stock</div></div>
+	    <div class="ui-block-c-1"><div class="ui-bar ui-bar-a" style="height:60px">10</div></div>
+	    
+	   	<div class="ui-block-a-1"><div class="ui-bar ui-bar-a" style="height:60px">154</div></div>
+	    <div class="ui-block-b-1"><div class="ui-bar ui-bar-a" style="height:60px">Likes</div></div>
+	    <div class="ui-block-c-1"><div class="ui-bar ui-bar-a" style="height:60px">120</div></div>
+	    
+	    <div class="ui-block-a-1"><div class="ui-bar ui-bar-a" style="height:60px">Block A</div></div>
+	    <div class="ui-block-b-1"><div class="ui-bar ui-bar-a" style="height:60px">Reviews</div></div>
+	    <div class="ui-block-c-1"><div class="ui-bar ui-bar-a" style="height:60px">Block C</div></div>
+	</div>
+	-->
+    
+    <!--Details of Comparison 1-->
+     	
+     <table width="130" style="position:absolute;top:300px;">
+<tr>
+  <td>SGD25</td>
+ 
+</tr>
+</table> 
+
+ 		
+		
+		
+		<div style="width:37%; height:10%;position:absolute;top:346px;left:5px">
+			<select name="loc" id="loc" onchange="locChange()" data-mini="true">
+						<optgroup label="Plaza Singapura">
+							<option value="mon">04-14 Mango</option>
+						</optgroup>
+						<optgroup label="313 Somerset">
+							<option value="sat">02-12 Mango</option>
+						</optgroup>
+						<optgroup label="ION Orchard">
+							<option value="sat">02-43 Mango</option>
+						</optgroup>
+					</select>
+								
+		</div>	  
+  
+
+
+ <table width="130" style="position:absolute;top:380px;">
+<tr>
+  <td>10</td>
+ 
+</tr>
+<tr>
+  <td>54</td>
+</tr>
+<tr>
+  <td><a href="#myPopup" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" style="background-color: rgba(10, 0, 0, 0);border: none; box-shadow: none;top:-20px;"><img alt="" src="../images/3-star.png" style="width: 65px; height: 25px" /></a></td>
+ 
+</tr>
+
+</table> 
+     
+     
+     
+     
+     
+     
+     
+    
+    <!--Details of Comparison 2-->
+     
+      
+      
+      <table width="130" style="position:absolute;top:300px;left:190px">
+<tr>
+  <td>SGD20</td>
+ 
+</tr>
+</table> 
+      
+      
+      
+      
+      
+      
+		
+		
+		<div style="width:37%; height:10%;position:absolute;top:346px;left:198px">
+			<select name="loc" id="loc" onchange="locChange()" data-mini="true">
+						<optgroup label="Raffles City">
+							<option value="mon">01-02 Robinsons</option>
+						</optgroup>
+						<optgroup label="Cathay Cineleisure">
+							<option value="sat">02-11 Isetan</option>
+						</optgroup>
+						<optgroup label="Tangs">
+							<option value="sat">01-11 Tangs</option>
+						</optgroup>
+					</select>
+								
+		</div>	  
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      <table width="130" style="position:absolute;top:380px;left:190px">
+<tr>
+  <td>12</td>
+ 
+</tr>
+<tr>
+  <td>10</td>
+</tr>
+<tr>
+  <td><a href="#myPopup1" data-rel="popup" class="ui-btn ui-btn-inline ui-corner-all" style="background-color: rgba(10, 0, 0, 0);border: none; box-shadow: none;top:-20px;"><img alt="" src="../images/1-star.png" style="width: 65px; height: 25px" /></a></td>
+ 
+</tr>
+
+</table> 
+     
+     
+</h3>
+
+
+<div data-role="popup" id="myPopup">
+  <p>1.Pretty good. They're long like Tallboys Apparel T-shirts. They're still the best in my opinion though.</p>
+  
+  <p>2.This truly is the perfect T-shirt. I'm surprised that people buy other brands of shirts...it fits phenomenally, ages well, retains its color. I couldn't ask for a shirt that fits or looks better.</p>
+</div>
+
+<div data-role="popup" id="myPopup1">
+  <p>1.i really love this product, the colours are great however I would recommend you to go in store to pick them as you can pick any three colours you want to go together. :)</p>
+  
+  <p>2.how can anyone complain? it's the perfect t-shirt.</p>
+</div>
+
+
+
+
+  <div data-role="footer" data-position="fixed">
+    <div data-role="navbar">
+      <ul>
+        <li><a href="../whatsnew.jsp?check=true" rel="external" data-icon="star">What's New</a></li>
+        <li><a href="../search.jsp" rel="external" data-icon="search">Search</a></li>
+        <li><a href="../snap.jsp" rel="external" data-icon="camera">Snap</a></li>
+        <li><a href="../compare.html" rel="external" class="ui-btn-active" data-icon="check">Compare</a></li>
+      </ul>
+    </div>
+  </div>
+</div> 
+
+
+</body>
+</html>

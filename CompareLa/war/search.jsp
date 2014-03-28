@@ -95,8 +95,9 @@ session.setAttribute( "fromSearch", "true" );
 %>
 
     <div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-mini="true">
-    	<h4>Search for Product Category</h4>
+    	<h4>Advanced Search</h4>
 	    <div class="ui-grid-a">
+	    <h6>Select a Product Category to begin:</h6>
 	      <div class="ui-block-a">
 	      	<a href="../search_tops.jsp">
 	      		<img src="../images/top.png">
