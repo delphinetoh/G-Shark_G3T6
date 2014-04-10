@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../jquery.mobile-1.4.1/jquery.mobile-1.4.1.min.css">
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/del.min.css">
+
 
 <style type="text/css">
 .ui-content {
@@ -56,7 +59,7 @@ session.setAttribute("check","true");
 <%--header--%>
 
 <div data-role="header" data-position="inline" data-position="fixed">
-	<a href="../../" data-icon="search" data-iconpos="notext">Logo</a>
+	<a href="../../" data-icon="info" data-iconpos="notext">Logo</a>
     <h1>Search Item</h1>
 </div>
 
@@ -145,7 +148,8 @@ session.setAttribute("check","true");
         <li><a href="../whatsnew.jsp?check=true" rel="external" data-icon="star">What's New</a></li>
         <li><a href="../search.jsp" rel="external" class="ui-btn-active" data-icon="search">Search</a></li>
         <li><a href="../snap.jsp" rel="external" data-icon="camera">Snap</a></li>
-        <li><a href="../compare.html" rel="external" data-icon="check">Compare</a></li>
+        <li><a href="../compareflip.jsp" rel="external" data-icon="check">Compare</a></li>
+        
       </ul>
     </div>
   </div>

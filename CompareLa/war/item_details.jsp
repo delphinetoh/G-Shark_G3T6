@@ -7,7 +7,7 @@
 		<link rel="stylesheet" href="jquery.mobile-1.4.1/jquery.mobile-1.4.1.min.css">
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
-		
+		<link rel="stylesheet" type="text/css" href="css/del.min.css">
 		
 		<script>
 		
@@ -103,7 +103,7 @@
 				<i><%=p.getDescription()%></i><br><br>
 				
 				<table width="90%">
-					<tr><td><b>Price</b></td><td><b>Likes</b<</td></tr>
+					<tr><td><b>Price</b></td><td><b>Likes</b></td></tr>
 					<tr><td>SGD<%=p.getPrice()%></td><td><%=p.getLikes()%></td></tr>
 				</table>
 				<br>			
@@ -158,8 +158,12 @@
 				
 				
 				<%-- The "Add to compare list" button and its pop-up window--%>
-				<a id="addToCompareBtn" href="#successAdd" data-position-to="window" data-transition="pop" data-rel="popup" class="ui-btn ui-icon-arrow-r ui-btn-icon-right" style="background: green" data-mini="true">Add to compare list!</a>
 				
+				<form action="addProduct" method="GET">
+					<input id ="idToSend" type="hidden" name="productID" value="<%=p.getProductID()%>"></input>	<br>
+					<button type="submit" id="addToCompareBtn" align="center" style="width: 100%; background: green" data-mini="true">Add to Compare List!</button>				
+				</form>
+						
 				<div data-role="popup" id="successAdd" class="ui-content">
 					<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right" >Close</a>
 					<h3>Item added!</h3>
@@ -168,20 +172,32 @@
 			</div>
 
 			<div data-role="footer"  data-position="fixed">
-					<div data-role="navbar">
-						<ul>
-							<li><a href="../whatsnew.jsp?check=true" rel="external" data-icon="star">What's New</a>
-				            </li>
-				            <li><a href="../search.jsp" rel="external" data-icon="search">Search</a>
-				            </li>
-				            <li><a href="../snap.jsp" rel="external" data-icon="camera">Snap</a>
-				            </li>
-				            <li><a href="../compare.html" rel="external" data-icon="check">Compare</a>
-				            </li>
-						</ul>
-					</div>
-			</div>
 
+<div data-role="navbar">
+
+<ul>
+
+<li><a href="../whatsnew.jsp?check=true" rel="external" data-icon="star">What's New</a>
+
+            </li>
+
+            <li><a href="../search.jsp" rel="external" data-icon="search">Search</a>
+
+            </li>
+
+            <li><a href="../snap.jsp" rel="external" data-icon="camera">Snap</a>
+
+            </li>
+
+            <li><a href="../compareflip.jsp" rel="external" data-icon="check">Compare</a></li>
+
+           
+
+</ul>
+
+</div>
+
+</div>
 		
 	</body>
 </html>

@@ -14,7 +14,7 @@
     <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
   </system-properties>
 
-  <!--"war/item_details.jsp"
+  <!--
     HTTP Sessions are disabled by default. To enable HTTP sessions specify:
 
       <sessions-enabled>true</sessions-enabled>

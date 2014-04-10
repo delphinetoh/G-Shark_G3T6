@@ -8,10 +8,7 @@ import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Query;
 
 public class LocationDAO {
-	
-	static {
-        ObjectifyService.register(Location.class);
-	}
+
 	
 	public LocationDAO() {
 	        

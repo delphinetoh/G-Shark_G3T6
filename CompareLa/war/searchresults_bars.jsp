@@ -3,10 +3,13 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="jquery.mobile-1.4.1/jquery.mobile-1.4.1.min.css">
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/del.min.css">
+
 
 <script>
 $(document).ready(function() {
@@ -134,36 +137,36 @@ if (check != null && check.equals("true")) {
 
 <%--search bar and filter options--%>
 <div style="width:90%;margin-left:auto;margin-right:auto;">
-	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search for another product..." data-mini="true">
-    	<li><a href="../searchresults_bars.jsp?check=true&num=1">Ralph Lauren White</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=2">Ralph Lauren Black</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=3">Ralph Lauren Blue</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=4">Ralph Lauren Red</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=5">Herschel Black Bag</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=6">Herschel Coloured Bag</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=7">G Star Denim Shorts</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=8">Red Lee 5 Berms</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=9">Fossil Watch</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=10">Hugo Boss Watch</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=11">River Island Quilted Bag</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=12">Anchor Duffle Bag</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=13">Levi's Jeans</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=14">Topshop Denim Shorts</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=15">Mango Cardigan</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=16">ASOS T-shirt in Stripes</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=17">Marc Jacobs Watch</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=18">Tommy Hilfiger Watch</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=19">Cheap Monday Skull Shirt</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=20">Cheap Monday Monochrome</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=21">Mango Check Blouse</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=22">Ralph Lauren</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=23">Herschel</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=24">Watch</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=25">Bag</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=26">Shorts</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=27">Cheap Monday</a></li>
-	    <li><a href="../searchresults_bars.jsp?check=true&num=28">Mango</a></li>
-	</ul>
+	    	<ul data-role="listview" data-inset="true" data-filter="true" data-filter-reveal="true" data-filter-placeholder="Search using keywords" data-mini="true">
+		    <li><a href="../searchresults.jsp?check=true&num=1">Ralph Lauren White</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=2">Ralph Lauren Black</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=3">Ralph Lauren Blue</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=4">Ralph Lauren Red</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=5">Herschel Black Bag</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=6">Herschel Coloured Bag</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=7">G Star Shorts</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=8">Lee 5 Berms</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=9">Fossil Watch</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=10">Hugo Boss Watch</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=11">River Island Bag</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=12">Anchor Duffle Bag</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=13">Levi's Jeans</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=14">Topshop Denim Shorts</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=15">Mango Cardigan</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=16">ASOS T-shirt</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=17">Marc Jacobs Watch</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=18">ASOS Watch</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=19">Cheap Monday Shirt</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=20">Cheap Monday Monochrome</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=21">Mango Check Blouse</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=22">Ralph Lauren</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=23">Herschel</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=24">Watch</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=25">Bag</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=26">Shorts</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=27">Cheap Monday</a></li>
+		    <li><a href="../searchresults.jsp?check=true&num=28">Mango</a></li>
+		</ul>
 	<fieldset data-role="controlgroup" data-type="horizontal" data-mini="true">
      	<input type="radio" name="sortby" id="price" value="price" checked="checked" />
      	<label for="price">Sort by Price</label>
@@ -221,7 +224,11 @@ selectedList = ProductDM.getLikesResultsBasedOnID(num);
 			Product p = ProductDM.getProductBasedOnID(selectedList[i]);
 	%>
 		<div class="ui-add-icon" style="position:absolute;">
-			<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>			
+			<form action="addProduct" method="GET">
+				<input id ="idToSend" type="hidden" name="productID" value="<%=p.getProductID()%>"></input>					
+				<input type="image" src="../images/compare.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+			</form>
+						
 		</div>	
 		<a href="../item_details.jsp?check=true&productID=<%=p.getProductID()%>"><img src="<%=p.getImgRef()%>" border="1"></a><font face="century gothic"><%=p.getProductName()%><br>SGD<%=p.getPrice()%></font>
 
@@ -259,7 +266,8 @@ selectedList = ProductDM.getLikesResultsBasedOnID(num);
      <li><a href="../whatsnew.jsp?check=true" data-icon="star">What's New</a></li>
      <li><a href="../search.jsp" rel="external" data-icon="search">Search</a></li>
      <li><a href="../snap.jsp" rel="external" data-icon="camera">Snap</a></li>
-     <li><a href="../compare.html" rel="external" data-icon="check">Compare</a></li>
+     <li><a href="../compareflip.jsp" rel="external" data-icon="check">Compare</a></li>
+     
    </ul>
  </div>
 </div>

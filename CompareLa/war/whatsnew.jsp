@@ -1,15 +1,41 @@
-
+<%@page import="app.*, entity.*, datamanager.*, java.util.*,javax.script.*;" %>
 <!DOCTYPE html>
 <html>
 
 <head>
+	<meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="../jquery.mobile-1.4.1/jquery.mobile-1.4.1.min.css">
     <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/del.min.css">
 
 	<script>
+		function click() {
+			alert("hi");
+			alert(window.location.protocol + "//" + window.location.host + "/" + window.location.pathname);
+		}
+		
+		function showTutorial() {
+			
+			alert("here");
+			
+			$("<div style='visibility:hidden;' data-role='popup' id='tutorial' data-overlay-theme='b' data-theme='b' data-corners='false'><a href='#' data-rel='back' class='ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right'>Close</a><img class='popphoto' src='../tutorial/WhatsNewHelpPage.PNG' style='max-height:512px;'></div>​")
+		    //.css({ "backgroundColor":"white","display":"block","top": $(window).scrollTop() + 300 , "left": $(window).scrollTop() + 100})
+		    .appendTo( $("body") )
+		    .delay( 0 )
+		    .fadeOut( 1000, function(){
+		        $(this).remove();
+		    });
+		}
 		$(document).ready(function() {
+			
+			/*alert("1st:" + location.href);
+			if (GetUrlValue("dialog")=="true") {
+				//alert("here");
+				itemAdded();
+			}*/
+			
 		    $('input:radio[name=her-pref]').change(function() {
 		        if (this.value == 'tops') {
 		            $("h13").show();
@@ -78,6 +104,39 @@
 		        }
 		    });
 		});
+		
+		var choice;
+		
+		
+		function itemAdded() {
+			$("<div class='ui-loader ui-overlay-shadow ui-body-e ui-corner-all'><h2>Item Added!</h2></div>")
+		    .css({ "backgroundColor":"white","display":"block","top": $(window).scrollTop() + 300 , "left": $(window).scrollTop() + 100})
+		    .appendTo( $("body") )
+		    .delay( 0 )
+		    .fadeOut( 1000, function(){
+		        $(this).remove();
+		    });
+		}
+		
+		function showEmpty() {
+			//alert("You have no items to compare in the list!");
+			alert("here");
+			$('#directTo').attr("href", "../whatsnew.jsp");
+			
+			
+		}
+		
+		function GetUrlValue(VarSearch){
+		    var SearchString = window.location.search.substring(1);
+		    var VariableArray = SearchString.split('&');
+		    for(var i = 0; i < VariableArray.length; i++){
+		        var KeyValuePair = VariableArray[i].split('=');
+		        if(KeyValuePair[0] == VarSearch){
+		            return KeyValuePair[1];
+		        }
+		    }
+		}
+		
 	</script>
     
     <style>
@@ -151,26 +210,64 @@
 		border-color: black;
 		border-width: 1px;
 		}
+		
+		.imgClass { 
+		    background-image: url(ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext);
+		    background-position:  0px 0px;
+		    background-repeat: no-repeat;
+		    border: 0px;
+		    background-color: none;
+		    cursor: pointer;
+		    outline: 0;
+		}
+		.imgClass:hover{ 
+		      background-position:  0px -52px;
+		}
+		
+		.imgClass:active{
+		      background-position:  0px -104px;
+		}
 
     </style>
 
 </head>
 
-<body>
-
 <%
 String check = (String) request.getParameter("check");
-if (check != null && check.equals("true")) { 
-%>
-	<meta http-equiv="refresh" content="0; url=../whatsnew.jsp" />
+String pid = (String) request.getParameter("productID");
+String dialog = (String) request.getParameter("dialog");
 
-<%}
+if (pid!=null || (check != null && check.equals("true"))) { 
+	if (dialog != null && dialog.equals("true")) {
 %>
+	<meta http-equiv="refresh" content="0; url=../whatsnew.jsp?dialog=yes" />
+
+<%} else { %>
+	<meta http-equiv="refresh" content="0; url=../whatsnew.jsp" />
+<% 	
+}
+}
+boolean emptyList=true;
+//check if db has products
+if (!ComparedProductList.getAllProducts().isEmpty()) {
+	emptyList=false;
+} 
+%>
+
+<% 
+if (dialog != null && dialog.equals("yes")) {
+	System.out.println("Here!");
+%>
+<body onload="itemAdded()">
+<% } else { %>
+<body>
+<% } %>
+
 
 <%--header--%>
 
 <div data-role="header" data-position="fixed">
-	<a href="#" data-icon="star" data-iconpos="notext" data-transition="fade">Bars</a>
+	<a href="#tutorial" data-rel="popup" data-icon="info" data-iconpos="notext" data-transition="fade">Bars</a>
 	<a href="../whatsnew_bars.jsp?check=true" data-icon="bars" data-iconpos="notext" data-transition="fade">Bars</a>
 	<h1>What's New</h1>
 </div>
@@ -179,8 +276,8 @@ if (check != null && check.equals("true")) {
 <div data-role="tabs">
     <div data-role="navbar">
         <ul>
-          <li><a href="#her" data-theme="a" data-ajax="false" class="ui-btn-active">For Her</a></li>
-          <li><a href="#him" data-theme="a" data-ajax="false">For Him</a></li>
+          <li><a href="#her" data-theme="a" data-ajax="false" class="ui-btn-active" width= "100%;">For Her</a></li>
+          <li><a href="#him" data-theme="a" data-ajax="false"a  width= "100%;">For Him</a></li>
         </ul>
     </div>
     
@@ -211,29 +308,54 @@ if (check != null && check.equals("true")) {
 		<div class="ui-grid-a">
 			<div class="ui-block-a">
 				<h13>
-					<div class="ui-add-icon-left" style="position:absolute; right:5px;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+					<div class="ui-add-icon-left" style="position:absolute; right:5px; ">
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="15"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext" style="margin-bottom: 50px;"/>
+							
+						</form>
+						
+								
+						
 					</div>
 					<a href="../item_details.jsp?check=true&productID=15"><img src="../products/female_top1.png" border="1"></a><p>Mango Cardigan<br>SGD25</p>
 				</h13>
 				
 				<h14>
 					<div class="ui-add-icon-left" style="position:absolute; right:5px;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>			
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="13"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+									
 					</div>
 					<a href="../item_details.jsp?check=true&productID=13"><img src="../products/female_bottom1.png" border="1"></a><p>Levi's Jeans<br>SGD129</p>
 				</h14>
 				
 				<h7>
 					<div class="ui-add-icon-left" style="position:absolute; right:5px;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="13"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>
 					<a href="../item_details.jsp?check=true&productID=13"><img src="../products/female_bag2.png" border="1"></a><p>Anchor Duffle Bag<br>SGD79</p>
 				</h7>
 				
 				<h8>
 					<div class="ui-add-icon-left" style="position:absolute; right:5px;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="17"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>
 					<a href="../item_details.jsp?check=true&productID=17"><img src="../products/female_watch1.png" border="1"></a><p>Marc Jacobs Watch<br>SGD155</p>
 				</h8>
@@ -241,30 +363,55 @@ if (check != null && check.equals("true")) {
 			<div class="ui-block-b">
 				<h13>
 					<div class="ui-add-icon-right" style="position:absolute;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+						
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="16"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>
-					<a href="../item_details.jsp?check=true&productID=16"><img src="../products/female_top2.png" border="1"></a><p>ASOS Tshirt in Stripes<br>SGD30</p>
+					<a href="../item_details.jsp?check=true&productID=16"><img src="../products/female_top2.png" border="1"></a><p>ASOS Tshirt<br>SGD30</p>
 				</h13>
 				
 				<h14>
-					<div class="ui-add-icon-right" style="position:absolute;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+					<div class="ui-add-icon-right" style="position:absolute;" >
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="14"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>
-					<a href="../item_details.jsp?check=true&productID=14"><img src="../products/female_bottom2.png" border="1"></a><p>Topshop Denim Shorts<br>SGD49</p>
+					<a href="../item_details.jsp?check=true&productID=14"><img src="../products/female_bottom2.png" border="1"></a><p>Topshop Shorts<br>SGD49</p>
 				</h14>
 				
 				<h7>
-					<div class="ui-add-icon-right" style="position:absolute;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+					<div class="ui-add-icon-right" style="position:absolute;" >
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="11"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>
-					<a href="../item_details.jsp?check=true&productID=11"><img src="../products/female_bag1.png" border="1"></a><p>River Island Quilted Bag<br>SGD259</p>
+					<a href="../item_details.jsp?check=true&productID=11"><img src="../products/female_bag1.png" border="1"></a><p>River Island Bag<br>SGD259</p>
 				</h7>
 				
 				<h8>
-					<div class="ui-add-icon-right" style="position:absolute;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+					<div class="ui-add-icon-right" style="position:absolute;" >
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="18"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>
-					<a href="../item_details.jsp?check=true&productID=18"><img src="../products/female_watch2.png" border="1"></a><p>Tommy Hilfiger Watch<br>SGD230</p>
+					<a href="../item_details.jsp?check=true&productID=18"><img src="../products/female_watch2.png" border="1"></a><p>ASOS Watch<br>SGD230</p>
 				</h8>
 				
 			</div>
@@ -299,28 +446,52 @@ if (check != null && check.equals("true")) {
 			<div class="ui-block-a">
 				<h9>
 					<div class="ui-add-icon-left" style="position:absolute; right:5px;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="1"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>
 					<a href="../item_details.jsp?check=true&productID=1"><img src="../products/ralph_lauren1.png" border="1"></a><p>Ralph Lauren White<br>SGD199</p>
 				</h9>
 				
 				<h12>
 					<div class="ui-add-icon-left" style="position:absolute; right:5px;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>			
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="9"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+									
 					</div>
 					<a href="../item_details.jsp?check=true&productID=9"><img src="../products/male_watch1.png" border="1"></a><p>Fossil Watch<br>SGD278</p>
 				</h12>
 				
 				<h11>
 					<div class="ui-add-icon-left" style="position:absolute; right:5px;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="5"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>
 					<a href="../item_details.jsp?check=true&productID=5"><img src="../products/male_bag1.png" border="1"></a><p>Herschel Black Bag<br>SGD189</p>
 				</h11>
 				
 				<h10>
 					<div class="ui-add-icon-left" style="position:absolute; right:5px;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="7"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>	
 					<a href="../item_details.jsp?check=true&productID=7"><img src="../products/male_bottoms1.png" border="1"></a><p>G Star Denim Shorts<br>SGD229</p>
 				</h10>
@@ -328,28 +499,52 @@ if (check != null && check.equals("true")) {
 			<div class="ui-block-b">
 				<h9>
 					<div class="ui-add-icon-right" style="position:absolute;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="3"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>
 					<a href="../item_details.jsp?check=true&productID=3"><img src="../products/ralph_lauren3.png" border="1"></a><p>Ralph Lauren Blue<br>SGD169</p>
 				</h9>
 				
 				<h12>
-					<div class="ui-add-icon-right" style="position:absolute;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>			
+					<div class="ui-add-icon-right" style="position:absolute;" >
+						
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="10"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+									
 					</div>
 					<a href="../item_details.jsp?check=true&productID=10"><img src="../products/male_watch2.png" border="1"></a><p>Hugo Boss Watch<br>SGD329</p>
 				</h12>
 				
 				<h11>
 					<div class="ui-add-icon-right" style="position:absolute;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>			
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="6"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+									
 					</div>
 					<a href="../item_details.jsp?check=true&productID=6"><img src="../products/male_bag2.png" border="1"></a><p>Herschel Coloured Bag<br>SGD189</p>
 				</h11>
 				
 				<h10>
 					<div class="ui-add-icon-right" style="position:absolute;">
-						<a href="#successAdd" data-rel="popup" data-transition="pop" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"></a>				
+						<form action="addProduct" method="GET">
+							<input id ="idToSend" type="hidden" name="productID" value="8"></input>					
+							<input type="image" src="../images/plus.png" alt="Submit Form" class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext"/>
+
+						</form>
+						
+										
 					</div>	
 					<a href="../item_details.jsp?check=true&productID=8"><img src="../products/male_bottoms2.png" border="1"></a><p>Lee 5 Red Berms<br>SGD157</p>
 				</h10>
@@ -362,12 +557,16 @@ if (check != null && check.equals("true")) {
 </div>
 
 	<%--pop up message for item added--%>
-	<div data-role="popup" id="successAdd" style="width:100px">
+	<div data-role="popup" id="successAdd" class="ui-content">
 		<a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right" >Close</a>
-		<h3>Item Added!</h3>
-	</div> 
+		<h3>Item added!</h3>
+	</div>
 
-                
+<%-- Tutorial Div --%>     
+
+<div data-role="popup" id="tutorial" data-overlay-theme="b" data-theme="b" data-corners="false">
+    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="../tutorial/whatsnewhelp.PNG" style="max-height:512px;">
+</div>
 
 <%--footer--%>
 
@@ -380,8 +579,8 @@ if (check != null && check.equals("true")) {
             </li>
             <li><a href="../snap.jsp" rel="external" data-icon="camera">Snap</a>
             </li>
-            <li><a href="../compare.html" rel="external" data-icon="check">Compare</a>
-            </li>
+            <li><a href="../compareflip.jsp" rel="external" data-icon="check">Compare</a></li>
+            
         </ul>
     </div>
 </div>

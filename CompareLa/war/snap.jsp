@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="../jquery.mobile-1.4.1/jquery.mobile-1.4.1.min.css">
 <script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 <script src="http://code.jquery.com/mobile/1.4.1/jquery.mobile-1.4.1.min.js"></script>
+<link rel="stylesheet" type="text/css" href="css/del.min.css">
 
 <style>
 .ui-grid-a img {
@@ -40,7 +42,7 @@ h3 {
 <%--header--%>
 
 <div data-role="header" data-position="inline">
-	<a href="#" data-icon="camera" data-iconpos="notext">Logo</a>
+	<a href="#tutorial"  data-rel="popup" data-icon="info" data-iconpos="notext">Logo</a>
     <h1>Snap It!</h1>
 </div>
 
@@ -58,7 +60,11 @@ h3 {
 	</form>
   </div>
   
+<%-- Tutorial Div --%>     
 
+<div data-role="popup" id="tutorial" data-overlay-theme="b" data-theme="b" data-corners="false">
+    <a href="#" data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn-a ui-icon-delete ui-btn-icon-notext ui-btn-right">Close</a><img class="popphoto" src="../tutorial/snaphelppage.PNG" style="max-height:512px;">
+</div>​
 	  
 
 <%--footer--%>
@@ -71,8 +77,8 @@ h3 {
             </li>
             <li><a href="../snap.jsp" rel="external" data-icon="camera" class="ui-btn-active">Snap</a>
             </li>
-            <li><a href="../compare.html" rel="external" data-icon="check">Compare</a>
-            </li>
+            <li><a href="../compareflip.jsp" rel="external" data-icon="check">Compare</a></li>
+            
         </ul>
     </div>
 </div>

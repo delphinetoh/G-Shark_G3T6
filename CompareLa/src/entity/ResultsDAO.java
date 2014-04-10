@@ -9,9 +9,7 @@ import com.googlecode.objectify.Query;
 
 public class ResultsDAO {
 	
-	static {
-        ObjectifyService.register(Results.class);
-	}
+
 	
 	public ResultsDAO() {
 	        
